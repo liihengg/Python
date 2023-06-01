@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+*.suo
+*.user
+TestResult.xml
+project.lock.json
+launchSettings.json
+.idea
