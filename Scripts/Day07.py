@@ -5,7 +5,7 @@
 # world!
 # """
 # print(s1, s2, s3, end='')
-import sys
+# import sys
 
 # s1 = '\t a \t'
 # s2 = r'\t a \t'
@@ -100,12 +100,12 @@ import sys
 # f3 = (x for x in range(21))
 # print(f1)
 # print(f2)
-# 
+
 # print('[', end='')
 # for f in f3:
 #     print(f' {f},', end='')
 # print(']')
-# 
+
 # print(sys.getsizeof(f1))
 # print(sys.getsizeof(f2))
 # print(sys.getsizeof(f3))
@@ -116,9 +116,108 @@ import sys
 # f2 = (x for x in range(10))
 # print(f2[0])
 
-t = ("1", 1)
-print(t)
-list1 = list(t)
-print(list1)
-t2 = tuple(list1)
-print(t2)
+# t = ("1", 1)
+# print(t)
+# list1 = list(t)
+# print(list1)
+# t2 = tuple(list1)
+# print(t2)
+
+# set1 = {1, 2, 3, 4, 4, 5, 2}
+# print(set1)
+# set2 = set(range(1, 10))
+# set3 = set((1, 2, 3, 4, 4, 5, 2))
+# print(set2, set3)
+# set4 = {num for num in range(1, 100) if num % 3 == 0}
+# print(set4)
+
+# set2 = set(range(1, 10))
+# set2.add(200)
+# print(set2)
+# set2.discard(100)
+# print(set2)
+# set2.update([10, 50, 30])
+# print(set2)
+# set2.remove(10)
+# print(set2)
+# print(set2.pop())
+# print(set2)
+
+# set1 = set(range(1, 6))
+# set2 = set(range(5, 10))
+# print(set1, set2)
+# print(set1 & set2)
+# print(set1 | set2)
+# print(set1 - set2)
+# print(set2 - set1)
+# print(set1 ^ set2)
+# print(set2 ^ set1)
+# print('----------')
+# set3 = {4}
+# print(set1 > set3)
+# print(set2 > set3)
+# # print(set3 in set2)
+
+# dict1 = {'key1': 1, 'key2': 2}
+# print(dict1)
+# dict2 = dict(one=1, key2=2)
+# print(dict2)
+# dict3 = dict(zip(['a', 'b', 'c'], '123'))
+# print(dict3)
+# dict4 = {num: num ** 2 for num in range(9)}
+# print(dict4)
+# print(dict1['key1'])
+# # print(dict3('a')) # error
+# # print(dict4(3)) # error
+# dict1.update(a=1)
+# print(dict1)
+# dict1.update(a=2)
+# print(dict1)
+# print(dict1.get('key3', 10))
+# dict1.popitem()
+# print(dict1)
+# item = dict1.pop('key1', 10)
+# print(item)
+# print(dict1)
+
+# import os
+# import time
+# 
+# def main():
+#     content = '北京欢迎你为你开天辟地…………'
+#     while True:
+#         # 清理屏幕上的输出
+#         os.system('cls')  # os.system('clear')
+#         print(content)
+#         # 休眠200毫秒
+#         time.sleep(0.2)
+#         content = content[1:] + content[0]
+# 
+# 
+# if __name__ == '__main__':
+#     main()
+
+import random
+
+
+# def main(code_len=4):
+#     all_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#     code = ''
+#     last_pos = len(all_chars) - 1
+#     for _ in range(code_len):
+#         index = random.randint(0, last_pos)
+#         code += all_chars[index]
+#     return code
+
+def main(filename, has_dot=False):
+    pos = filename.find('.')
+    if pos != -1:
+        index = pos if has_dot else pos + 1
+        return filename[index:]
+    else:
+        return ''
+
+
+if __name__ == '__main__':
+    a = main("1234.xt", True)
+    print(a)
