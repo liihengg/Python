@@ -8,3 +8,6 @@ project.lock.json
 launchSettings.json
 .idea
 Resource
+build
+dist
+*.spec

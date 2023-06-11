@@ -73,8 +73,11 @@ import requests
 
 
 def main():
-    resp = requests.get('https://www.baidu.com')
-    print(resp.text)
+    state = 1
+    for index in range(1,4):
+        print(index)
+    # resp = requests.get('https://www.baidu.com')
+    # print(resp.text)
 
 
 if __name__ == '__main__':
