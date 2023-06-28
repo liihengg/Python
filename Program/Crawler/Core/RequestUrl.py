@@ -3,14 +3,15 @@ import requests
 import json
 import os
 from lxml import html
+import MetaFileUtils as meta_file_utils
 
 fileEncoding = 'utf-8'
 
 resourcePath = '../Resource'
 textureFilePath = resourcePath + '/Texture'
 
-downloadMetaPath = resourcePath + '/Texture/DownloadMeta.json'
-downloadIndexFilePath = resourcePath + '/Texture/index.txt'
+downloadMetaPath = resourcePath + '/DownloadMeta.json'
+downloadIndexFilePath = resourcePath + '/index.txt'
 
 rootUrl = 'https://meirentu.cc'
 
@@ -18,6 +19,9 @@ NotStarted: int = 1
 Downloading: int = 2
 Done: int = 3
 Failed: int = 4
+
+CountByUrl = "CountByUrl"
+CountByDownload = "CountByDownload"
 
 
 class DownloadHandler(Thread):
@@ -33,23 +37,6 @@ class DownloadHandler(Thread):
             headers=self._headers,
         )
         self._callback(resp, self._url)
-
-
-def CheckMetaFile():
-    if not os.path.exists(resourcePath):
-        os.mkdir(resourcePath)
-
-    if not os.path.exists(textureFilePath):
-        os.mkdir(textureFilePath)
-
-    if not os.path.exists(downloadMetaPath):
-        with open(downloadMetaPath, 'w', encoding=fileEncoding) as f:
-            default_dic = {}
-            json.dump(default_dic, f)
-
-    if not os.path.exists(downloadIndexFilePath):
-        with open(downloadIndexFilePath, 'w', encoding=fileEncoding) as f:
-            f.write(str(1))
 
 
 def CheckUrlState(url):
@@ -159,8 +146,8 @@ def DownloadGroupTexture(url):
     UpdateUrlState(url, Done)
 
 
-def DownloadPage(startIndex):
-    cur_index = startIndex
+def DownloadPage(start_index):
+    cur_index = start_index
     while True:
         page_url = f'https://meirentu.cc/index/{cur_index}.html'
         resp = requests.get(page_url)
@@ -177,10 +164,12 @@ def DownloadPage(startIndex):
 
 
 def main():
-    CheckMetaFile()
-    with open(downloadIndexFilePath, 'r', encoding=fileEncoding) as f:
-        start_index = int(f.read())
-        DownloadPage(start_index)
+    meta_file_utils.check_meta_file()
+    start_index = meta_file_utils.get_start_index()
+    if start_index == -1:
+        start_index = 1
+
+    DownloadPage(start_index)
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@ TestResult.xml
 project.lock.json
 launchSettings.json
 .idea
-Resource
+Program/Crawler/Resource
 build
 dist
 *.spec
